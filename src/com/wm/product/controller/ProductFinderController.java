@@ -56,13 +56,26 @@ public class ProductFinderController {
     public @ResponseBody
     SimpleProduct getProductById(@PathVariable("id") long id) {
         SimpleProduct retVal = null;
-        
         for(SimpleProduct product : products) {
             if(product.getId() == id) {
                 retVal = product;
+                break;
             }
         }
-        
+        return retVal;
+    }
+    
+    @RequestMapping(value = "/v2/product/{id}", method = RequestMethod.GET)
+    public @ResponseBody
+    SimpleProduct getProductByIdV2(@PathVariable("id") long id) {
+        SimpleProduct retVal = null;
+        for(SimpleProduct product : products) {
+            if(product.getId() == id) {
+                retVal = product;
+                System.out.println("V2 Product: "+retVal);
+                break;
+            }
+        }
         return retVal;
     }
 
